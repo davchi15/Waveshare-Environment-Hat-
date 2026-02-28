@@ -1,5 +1,9 @@
+Got it! Thank you for the correction—that makes the hardware setup even cleaner since it is all neatly packed onto that single Waveshare HAT.
+
+Here is the updated README. I have formatted all the terminal commands using triple backticks (```), so when you copy and paste this entire block of text below into your GitHub README.md file, GitHub will automatically render those commands inside the sleek gray boxes you are looking for.
+
 🚀 Waveshare Telemetry Suite for Raspberry Pi
-A complete, dark-mode GUI telemetry suite for the Raspberry Pi. This suite visualizes real-time data from the Waveshare Environment HAT (ICM20948, BME280, SGP40, TSL2591) and an LTR390-UV-1 sensor.
+A complete, dark-mode GUI telemetry suite for the Raspberry Pi. This suite visualizes real-time data from the Waveshare Environment HAT (featuring the ICM20948, BME280, SGP40, TSL2591, and LTR390-UV-1 sensors).
 
 Includes three distinct interactive dashboards and a master launcher menu.
 
@@ -21,9 +25,9 @@ UV Light dashboard.py (The 2-panel UV Index & Raw Counts dashboard)
 🛠️ Hardware Requirements
 Raspberry Pi (Tested on Pi 4 / Pi 5)
 
-Waveshare Environment HAT (Provides Motion, Temp, Hum, VOC, UVI, and Ambient Light)
+Waveshare Environment HAT (An all-in-one board providing Motion, Temp, Hum, VOC, Ambient Light, and UV tracking)
 
-All sensors communicate via the I2C protocol. If wiring manually instead of attaching the HAT directly, connect your sensors to the Pi as follows:
+All sensors communicate via the I2C protocol. If wiring the HAT manually via jumper wires instead of seating it directly on the Pi's GPIO pins, connect them as follows:
 
 SDA to Pin 3
 
@@ -35,7 +39,7 @@ GND (Ground) to Pin 6
 
 ⚡ Quickstart Setup
 1. Enable I2C on your Raspberry Pi
-The sensors communicate over I2C, which is disabled by default on a fresh Raspberry Pi OS install. Open your terminal and run:
+The sensors communicate over I2C, which is disabled by default on a fresh Raspberry Pi OS install. Open your terminal and run the configuration tool:
 
 Bash
 sudo raspi-config
@@ -50,14 +54,13 @@ The Python GUI framework (Tkinter) and the virtual environment manager require s
 
 Bash
 sudo apt update
-Bash
 sudo apt install python3-tk python3-venv i2c-tools -y
 3. Verify Hardware Connections
-Check that your Pi can successfully communicate with the sensors on the I2C bus:
+Check that your Pi can successfully communicate with the sensors on the HAT:
 
 Bash
 i2cdetect -y 1
-You should see a grid of numbers output in the terminal. Look for these specific hardware addresses to confirm your sensors are online:
+You should see a grid of numbers output in the terminal. Look for these specific hardware addresses to confirm your HAT is online:
 
 0x68 (ICM20948 Motion)
 
@@ -74,11 +77,8 @@ Newer versions of Raspberry Pi OS require Python packages to be installed in a v
 
 Bash
 mkdir telemetry-suite
-Bash
 cd telemetry-suite
-Bash
 python3 -m venv env
-Bash
 source env/bin/activate
 (Note: You must run source env/bin/activate anytime you open a new terminal window to work on or run this project).
 
