@@ -1,0 +1,72 @@
+Target System: Raspberry Pi OS (Bookworm/Bullseye)
+Hardware: Pi 5 / 4B / Zero 2W
+
+# 🚀 Waveshare Telemetry Suite for Raspberry Pi
+
+A complete, dark-mode GUI telemetry suite for the Raspberry Pi. This suite visualizes real-time data from the Waveshare Environment HAT (ICM20948, BME280, SGP40, TSL2591) and the LTR390-UV-1 sensor. 
+
+Includes three distinct interactive dashboards and a master launcher menu.
+
+## 📂 Project Structure
+To use the master launcher, ensure your files are named exactly like this inside your project folder:
+* `Master_Menu.py` (The main menu UI)
+* `motion_dashboard.py` (The 3D Physics & Inertia Engine)
+* `dashboard.py` (The 4-panel Temperature/Humidity/VOC/Light dashboard)
+* `UV Light dashboard.py` (The 2-panel UV Index & Raw Counts dashboard)
+
+## 🛠️ Hardware Requirements
+* **Raspberry Pi** (Tested on Pi 4 / Pi 5)
+* **Waveshare Environment HAT** (Provides Motion, Temp, Hum, VOC, UVI, and Ambient Light)
+* All sensors communicate via I2C. If wiring manually, connect `SDA` to Pin 3, `SCL` to Pin 5, `3V3` to Pin 1, and `GND` to Pin 6.
+
+---
+
+## ⚡ Quickstart Setup
+
+### 1. Enable I2C on your Raspberry Pi
+The sensors communicate over I2C, which is disabled by default.
+1. Open your terminal and run: `sudo raspi-config`
+2. Navigate to **Interface Options** -> **I2C**.
+3. Select **Yes** to enable. Exit and reboot if prompted.
+
+### 2. Install System Dependencies
+Tkinter (the framework used for the GUI) requires system-level packages to run properly.
+```bash
+sudo apt update
+sudo apt install python3-tk python3-venv i2c-tools -y
+
+3. Verify Hardware Connections
+
+Check that your Pi can see the sensors on the I2C bus:
+Bash
+
+i2cdetect -y 1
+
+You should see addresses like 0x68 (Motion), 0x76 (Temp), and 0x53 (UV).
+4. Create a Virtual Environment
+
+To keep your Python environment clean and avoid "externally-managed-environment" errors:
+Bash
+
+mkdir telemetry-suite
+cd telemetry-suite
+python3 -m venv env
+source env/bin/activate
+
+(Note: Run source env/bin/activate anytime you open a new terminal for this project).
+5. Install Python Libraries
+
+Install the UI frameworks and all required Adafruit CircuitPython hardware drivers:
+Bash
+
+pip install customtkinter matplotlib numpy adafruit-blinka
+pip install adafruit-circuitpython-icm20x adafruit-circuitpython-bme280 adafruit-circuitpython-sgp40 adafruit-circuitpython-tsl2591 adafruit-circuitpython-ltr390
+
+6. Launch the Suite
+
+Make sure all 4 Python files are in your telemetry-suite folder, then run the launcher:
+Bash
+
+python launcher.py
+
+From the menu, click LAUNCH on any subsystem to open its live telemetry dashboard!
