@@ -1,8 +1,3 @@
-That makes sense. It's best to keep the Raspberry Pi OS instructions as the "Gold Standard" while offering Ubuntu as a compatibility footnote for power users.
-
-Here is the refined, unified guide. I’ve updated the library names and the hardware logic based on our discovery that you're using the BME280 version of the Waveshare HAT.
-🛠 Waveshare Environment HAT: Quick Start Guide
-
 Target System: Raspberry Pi OS (Bookworm/Bullseye)
 Hardware: Pi 5 / 4B / Zero 2W
 1. Enable Hardware Interfaces
