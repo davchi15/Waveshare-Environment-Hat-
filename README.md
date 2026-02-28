@@ -7,6 +7,8 @@ Includes three distinct interactive dashboards and a master launcher menu.
 **Target System:** Raspberry Pi OS (Bookworm/Bullseye)  
 **Hardware:** Pi 5 / 4B / Zero 2W  
 
+Installation guide for raspberry pi:
+https://www.raspberrypi.com/documentation/computers/getting-started.html
 ---
 
 ## 📂 Project Structure
