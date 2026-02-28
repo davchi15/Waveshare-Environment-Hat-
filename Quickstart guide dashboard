@@ -1,0 +1,90 @@
+That makes sense. It's best to keep the Raspberry Pi OS instructions as the "Gold Standard" while offering Ubuntu as a compatibility footnote for power users.
+
+Here is the refined, unified guide. I’ve updated the library names and the hardware logic based on our discovery that you're using the BME280 version of the Waveshare HAT.
+🛠 Waveshare Environment HAT: Quick Start Guide
+
+Target System: Raspberry Pi OS (Bookworm/Bullseye)
+Hardware: Pi 5 / 4B / Zero 2W
+1. Enable Hardware Interfaces
+
+The I2C bus is turned off by default for security. You must enable it to communicate with the sensors.
+Bash
+
+sudo raspi-config
+# Navigate to: Interface Options -> I2C -> Yes
+# Select 'Finish' and reboot if prompted.
+
+2. Install System Dependencies
+
+The Pi 5 uses a specific architecture (RP1 chip) for GPIO. We need python3-lgpio to ensure the Python libraries can talk to the pins.
+Bash
+
+sudo apt update
+sudo apt install python3-pip python3-venv i2c-tools python3-lgpio -y
+
+3. Setup Virtual Environment
+
+Raspberry Pi OS now enforces "Externally Managed Environments." You must use a virtual environment to install Python packages.
+Bash
+
+python -m venv env
+source env/bin/activate
+
+4. Install Python Drivers
+
+These are the specific drivers for the Waveshare sensor suite.
+
+    Note: We use adafruit-circuitpython-bme280 because your HAT uses the 0x76 address for Temp/Hum/Pressure.
+
+Bash
+
+# Core tools
+pip install customtkinter matplotlib board adafruit-blinka rpi-lgpio
+
+# Sensor specific drivers
+pip install adafruit-circuitpython-bme280 \
+adafruit-circuitpython-sgp40 \
+adafruit-circuitpython-tsl2591 \
+adafruit-circuitpython-ltr390
+
+5. Hardware Verification
+
+Run this command to ensure the HAT is seated correctly and the Pi sees the chips:
+Bash
+
+i2cdetect -y 1
+
+Expected Output:
+
+    29: TSL2591 (Light)
+
+    53: LTR390 (UV)
+
+    68: ICM20948 (Motion/RTC)
+
+    76: BME280 (Temp/Hum/Baro)
+
+    59: SGP40 (VOC - Note: may only appear after script starts)
+
+🐧 Running on Ubuntu? (Addendum)
+
+If you are using Ubuntu instead of Pi OS, follow the steps above with these two critical changes:
+
+    Permissions: Ubuntu doesn't grant I2C access by default. Run:
+    Bash
+
+sudo usermod -aG i2c,gpio $USER
+
+(Logout and login for this to take effect)
+
+Dependencies: Use libgpiod if lgpio behaves unexpectedly:
+Bash
+
+    sudo apt install libgpiod-dev python3-libgpiod -y
+
+🚀 Final Check
+
+Once your environment is ready, you can launch your script:
+Bash
+
+python dashboard.py

@@ -1,0 +1,82 @@
+🌐 Newtonian Inertia Engine
+
+A real-time, 3D telemetry visualization dashboard for the Raspberry Pi using the ICM20948 9-DOF motion sensor (commonly found on the Waveshare Environment HAT). This interface displays live pitch/roll, total G-force, rotational velocity, and magnetic strength in a custom Tkinter GUI.
+🛠️ Hardware Requirements
+
+    Raspberry Pi (Tested on Pi 4 / Pi 5)
+
+    Waveshare Environment HAT (or any ICM20948 breakout board connected via I2C)
+
+    Shutterstock
+
+
+(Note: If you are using a standalone sensor instead of the HAT, connect SDA to Pin 3, SCL to Pin 5, 3V3 to Pin 1, and GND to Pin 6).
+🚀 Quickstart Guide
+Step 1: Enable I2C on your Raspberry Pi
+
+The sensor communicates with the Pi over I2C, which is disabled by default.
+
+    Open your terminal and run the configuration tool:
+    Bash
+
+    sudo raspi-config
+
+    Navigate to Interface Options -> I2C.
+
+    Select Yes to enable the ARM I2C interface.
+
+    Exit the tool and reboot your Pi if prompted.
+
+Step 2: Install System Dependencies
+
+Tkinter (the framework used for the GUI) requires a system-level package to run properly on Raspberry Pi OS. Run the following command:
+Bash
+
+sudo apt update
+sudo apt install python3-tk python3-venv -y
+
+Step 3: Set Up a Virtual Environment
+
+To keep your Pi's Python environment clean and avoid installation errors, create a virtual environment inside your project folder:
+Bash
+
+# Create a folder for the project and navigate into it
+mkdir newtonian-engine
+cd newtonian-engine
+
+# Create the virtual environment
+python3 -m venv env
+
+# Activate the virtual environment
+source env/bin/activate
+
+(Note: You will need to run the source env/bin/activate command every time you open a new terminal to work on this project).
+Step 4: Install Python Libraries
+
+With your virtual environment activated, install the required packages. We are using adafruit-blinka to allow the Pi to use CircuitPython libraries, and customtkinter for the dark-mode UI.
+Bash
+
+pip install customtkinter matplotlib numpy adafruit-blinka adafruit-circuitpython-icm20x
+
+Step 5: Run the Engine
+
+    Download the main.py file from this repository and place it in your project folder.
+
+    Run the script:
+
+Bash
+
+python main.py
+
+    Tilt your Raspberry Pi to watch the 3D globe and telemetry data update in real-time! If you bump or spin the Pi too hard, watch out for the KINETIC DISRUPTION warning!
+
+🛑 Troubleshooting
+
+    Motion Sensor Error: No I2C device at address: 0x68
+    Make sure your HAT is pressed firmly onto the GPIO pins, or your standalone sensor is wired correctly. Ensure I2C is enabled (Step 1).
+
+    The GUI opens but the numbers are static and say -0.07
+    The app has entered "Simulation Mode" because it cannot detect the sensor. Double-check your hardware connections.
+
+    ModuleNotFoundError: No module named 'tkinter'
+    You skipped Step 2! Make sure to run sudo apt install python3-tk.
