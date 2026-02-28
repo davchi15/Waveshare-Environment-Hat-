@@ -13,10 +13,10 @@ Includes three distinct interactive dashboards and a master launcher menu.
 
 ## 📂 Project Structure
 To use the master launcher, ensure your files are named exactly like this inside your project folder:
-* `launcher.py` (The main menu UI)
-* `motion_app.py` (The 3D Physics & Inertia Engine)
-* `env_app.py` (The 4-panel Temperature/Humidity/VOC/Light dashboard)
-* `uv_app.py` (The 2-panel UV Index & Raw Counts dashboard)
+* `Master_Menu.py` (The main menu UI)
+* `motion_dashboard.py` (The 3D Physics & Inertia Engine)
+* `dashboard.py` (The 4-panel Temperature/Humidity/VOC/Light dashboard)
+* `UV Light dashboard.py` (The 2-panel UV Index & Raw Counts dashboard)
 
 ## 🛠️ Hardware Requirements
 * **Raspberry Pi** (Tested on Pi 4 / Pi 5)
