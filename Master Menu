@@ -1,7 +1,7 @@
 📚 The Complete Quickstart Guide (README.md)
 
 Here is your final, complete README combining all three dashboards into a single, beginner-friendly repository guide.
-Markdown
+
 
 # 🚀 Waveshare Telemetry Suite for Raspberry Pi
 
@@ -18,8 +18,7 @@ To use the master launcher, ensure your files are named exactly like this inside
 
 ## 🛠️ Hardware Requirements
 * **Raspberry Pi** (Tested on Pi 4 / Pi 5)
-* **Waveshare Environment HAT** (Provides Motion, Temp, Hum, VOC, and Ambient Light)
-* **LTR390-UV-1 Sensor** (Provides UVI and Raw UV counts)
+* **Waveshare Environment HAT** (Provides Motion, Temp, Hum, VOC, UVI, and Ambient Light)
 * All sensors communicate via I2C. If wiring manually, connect `SDA` to Pin 3, `SCL` to Pin 5, `3V3` to Pin 1, and `GND` to Pin 6.
 
 ---
