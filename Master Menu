@@ -1,7 +1,9 @@
 📚 The Complete Quickstart Guide (README.md)
 
-Here is your final, complete README combining all three dashboards into a single, beginner-friendly repository guide.
+Here is the final, complete README combining all three dashboards into a single, beginner-friendly repository guide.
 
+Target System: Raspberry Pi OS (Bookworm/Bullseye)
+Hardware: Pi 5 / 4B / Zero 2W
 
 # 🚀 Waveshare Telemetry Suite for Raspberry Pi
 
